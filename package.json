@@ -1,0 +1,12 @@
+{
+  "source": "index.html",
+  "scripts": {
+    "copy": "copyfiles pages/* dist/ && copyfiles static/* dist/",
+    "dev": "npm run copy && parcel",
+    "build": "npm run copy && parcel build"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "parcel": "^2.6.2"
+  }
+}
