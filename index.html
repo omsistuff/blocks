@@ -20,7 +20,7 @@
 
 <body>
 
-    <main>
+    <main style="overflow: hidden;">
         <nav>
             <span>Blocks</span>
             <ul class="links">
@@ -64,7 +64,7 @@
         const view = document.querySelector('.view');
 
         async function loadPage(page) {
-            view.style.animation = 'panelExit .2s cubic-bezier(.14,1.09,.33,.88)';
+            view.style.animation = 'panelExit .2s cubic-bezier(.14,1.09,.33,.88) forwards';
             // view.innerHTML = `<div style="display:grid;place-items:center;height:100%;"><span class="loader"></span></div>`;
             const response = await fetch(`/pages/${page}.html`);
             const html = await response.text();
