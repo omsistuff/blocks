@@ -2,8 +2,109 @@
 <h1>Menus</h1>
 <p>Menus are small panels that appear at place of a user interaction</p>
 
+<h2>Usage</h2>
+<div class="autoflex">
+    <div>
+        <div class="buttonContainer">
+            <div class="menu" id="menuBasic">
+                <button class="button openMenu">basic</button>
+                <dialog>
+                    <ul>
+                        <a href="#">
+                            <li>Edit</li>
+                        </a>
+                        <a href="#">
+                            <li>Delete</li>
+                        </a>
+                    </ul>
+                </dialog>
+            </div>
+        </div>
+        <p>Simple list of actions.</p>
+    </div>
+    <div>
+        <div class="buttonContainer">
+            <div class="menu" id="menuNested1">
+                <button class="button openMenu">nested</button>
+                <dialog>
+                    <ul>
+                        <div class="menu bottom right aside" id="menuNested2">
+                            <button class="openMenu">
+                                <li style="display: flex; align-items: center; justify-content: space-between;">
+                                    <span>View</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                                        <path d="M9.4 18 8 16.6l4.6-4.6L8 7.4 9.4 6l6 6Z" />
+                                    </svg>
+                                </li>
+                            </button>
+
+                            <dialog>
+                                <ul>
+                                    <a href="#">
+                                        <li>
+                                            Action 1
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li>
+                                            Action 2
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li>
+                                            Action 3
+                                        </li>
+                                    </a>
+                                </ul>
+                            </dialog>
+                        </div>
+                        <a href="#">
+                            <li>Edit</li>
+                        </a>
+                        <a href="#">
+                            <li>Delete</li>
+                        </a>
+                    </ul>
+                </dialog>
+            </div>
+        </div>
+        <p>You can also wrap menu into another.</p>
+    </div>
+    <div>
+        <div class="buttonContainer">
+            <div class="menu top left" id="menuSurface">
+                <button class="button openMenu">surface</button>
+                <dialog>
+                    <div class="content" style="display: flex; gap: 22px; max-width: 420px;">
+                        <img src="https://cdn.interessonne.fr/v1/format/png/https%3A%2F%2Fomsistuff.fr%2Fmedias%2Fdonate.png"
+                            alt="donate" style="height: 200px; width: auto;">
+                        <div>
+                            <h3>Thanks you for downloading this repaint !</h3>
+                            <p>Want to donate to creator ? take a look here</p>
+
+                            <button class="button block colored">donate</button>
+                        </div>
+                    </div>
+                </dialog>
+            </div>
+        </div>
+        <p>Can also be used to display content in specific area after a user action.</p>
+    </div>
+</div>
+
+<style>
+    .buttonContainer {
+        border-radius: 2px;
+        height: 300px;
+        display: grid;
+        place-items: center;
+        background-color: #8881;
+    }
+</style>
+
 <script>
-    document.addEventListener('pageLoaded', () => {
-        alert();
-    })
+    new Menu(document.getElementById('menuBasic'));
+    new Menu(document.getElementById('menuNested1'));
+    new Menu(document.getElementById('menuNested2'));
+    new Menu(document.getElementById('menuSurface'));
 </script>

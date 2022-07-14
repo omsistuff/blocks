@@ -36,8 +36,8 @@
                 <details>
                     <summary>Components</summary>
                     <div class="links">
+                        <a href="#bottomSheets">Bottom Sheets</a>
                         <a href="#buttons">Buttons</a>
-                        <a href="#dialogs">Dialogs</a>
                         <a href="#menus">Menus</a>
                         <a href="#navbars">Navbars</a>
                         <a href="#textfields">Textfields</a>
@@ -68,7 +68,10 @@
             // view.innerHTML = `<div style="display:grid;place-items:center;height:100%;"><span class="loader"></span></div>`;
             const response = await fetch(`/pages/${page}.html`);
             const html = await response.text();
+            const js = html.match(/<script>([\s\S]*?)<\/script>/gi);
+            const jsContent = js ? js[0].replace(/<script>|<\/script>/gi, '') : '';
             view.innerHTML = html;
+            eval(jsContent);
             view.style.animation = 'panelEnter .3s cubic-bezier(.14,1.09,.33,.88)';
             return true;
         }
