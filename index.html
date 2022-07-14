@@ -20,6 +20,48 @@
 
 <body>
 
+    <dialog class="modal" id="demoDialog1">
+        <ul>
+            <li>View</li>
+            <li>Edit</li>
+            <li>Delete</li>
+        </ul>
+    </dialog>
+
+    <dialog class="modal" id="demoDialog2">
+        <header>
+            <span>process name</span>
+            <form method="dialog">
+                <button>done</button>
+            </form>
+        </header>
+        <div class="content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel urna libero. Mauris quam leo, porta at
+                egestas eget, pellentesque a odio. Phasellus risus sem, aliquam vitae viverra sit amet, imperdiet id
+                turpis. Suspendisse potenti. Quisque a nisl eros. Interdum et malesuada fames ac ante ipsum primis in
+                faucibus. Vivamus convallis diam egestas arcu fermentum, sed convallis arcu commodo. Suspendisse
+                consequat, massa id lobortis consectetur, eros nunc commodo orci, non condimentum nunc est sed ipsum.
+                Suspendisse facilisis in est at consequat. In quis suscipit turpis. In ligula ipsum, imperdiet id porta
+                et, sollicitudin eget neque. Aliquam fermentum sem eu gravida cursus. In ac ultrices nunc. Sed feugiat
+                mattis felis at rutrum.</p>
+            <p>Aenean semper pellentesque leo a lacinia. Mauris luctus aliquam tellus et congue. Aliquam quis rhoncus
+                tellus, a consectetur nunc. In egestas libero ac arcu aliquam, eget porttitor ante gravida. Duis a
+                euismod sapien. Etiam quis porttitor lectus. Pellentesque consequat, nisi id sodales rhoncus, ante dui
+                convallis ipsum, ut tincidunt lectus justo a ipsum. Donec congue pharetra suscipit.</p>
+            <p>Praesent convallis eget ex id dignissim. Nulla lacinia semper laoreet. Proin lobortis et tellus facilisis
+                finibus. Proin faucibus urna felis, at ullamcorper purus molestie sit amet. Suspendisse varius congue
+                hendrerit. Aenean vel egestas dui, quis tincidunt sem. Aliquam non ex auctor, dapibus lectus vel, porta
+                magna. Cras porttitor lacus ut velit egestas rhoncus. Nulla imperdiet sapien vel lacus aliquam feugiat.
+                Maecenas bibendum enim odio, vel laoreet lacus volutpat id. Etiam tempus dignissim facilisis. Phasellus
+                vel diam massa. Aliquam faucibus ultricies mauris, eu aliquam diam lacinia non. Quisque suscipit
+                porttitor dui, non tempus turpis.</p>
+
+            <form method="dialog">
+                <button class="button block colored">I accept the terms</button>
+            </form>
+        </div>
+    </dialog>
+
     <main style="overflow: hidden;">
         <nav>
             <span>Blocks</span>
@@ -62,6 +104,8 @@
 
     <script>
         const view = document.querySelector('.view');
+        window.demoDialog1 = new Dialog(document.querySelector('#demoDialog1'));
+        window.demoDialog2 = new Dialog(document.querySelector('#demoDialog2'), { closable: false });
 
         async function loadPage(page) {
             view.style.animation = 'panelExit .2s cubic-bezier(.14,1.09,.33,.88) forwards';

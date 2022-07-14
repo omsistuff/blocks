@@ -60,7 +60,8 @@ img {
 
 /* utils classes */
 
-.autoflex {
+.autoflex,
+.row {
     display: flex;
     gap: 16px;
 }
@@ -140,6 +141,7 @@ nav .links a {
 .withDrawer aside {
     background-color: var(--body);
     border-right: 1px solid #8883;
+    padding-top: 22px;
     min-width: 256px;
     max-width: 256px;
 }
@@ -740,8 +742,8 @@ progress:indeterminate::after {
 
 @media (min-width: 768px) {
 
-    dialog header,
-    dialog .content {
+    .modal header,
+    .modal .content {
         padding: 16px 72px;
     }
 }
