@@ -1,0 +1,258 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+    <link href="http://fonts.cdnfonts.com/css/renner" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Renner*', sans-serif;
+        }
+
+        main {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <dialog class="modal" id="dialog">
+        <ul>
+            <li>View</li>
+            <li>Edit</li>
+            <li>Delete</li>
+        </ul>
+    </dialog>
+
+    <dialog class="modal" id="bigDialog">
+        <header>
+            <span>process name</span>
+            <form method="dialog">
+                <button>done</button>
+            </form>
+        </header>
+        <div class="content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel urna libero. Mauris quam leo, porta at
+                egestas eget, pellentesque a odio. Phasellus risus sem, aliquam vitae viverra sit amet, imperdiet id
+                turpis. Suspendisse potenti. Quisque a nisl eros. Interdum et malesuada fames ac ante ipsum primis in
+                faucibus. Vivamus convallis diam egestas arcu fermentum, sed convallis arcu commodo. Suspendisse
+                consequat, massa id lobortis consectetur, eros nunc commodo orci, non condimentum nunc est sed ipsum.
+                Suspendisse facilisis in est at consequat. In quis suscipit turpis. In ligula ipsum, imperdiet id porta
+                et, sollicitudin eget neque. Aliquam fermentum sem eu gravida cursus. In ac ultrices nunc. Sed feugiat
+                mattis felis at rutrum.</p>
+            <p>Aenean semper pellentesque leo a lacinia. Mauris luctus aliquam tellus et congue. Aliquam quis rhoncus
+                tellus, a consectetur nunc. In egestas libero ac arcu aliquam, eget porttitor ante gravida. Duis a
+                euismod sapien. Etiam quis porttitor lectus. Pellentesque consequat, nisi id sodales rhoncus, ante dui
+                convallis ipsum, ut tincidunt lectus justo a ipsum. Donec congue pharetra suscipit.</p>
+            <p>Praesent convallis eget ex id dignissim. Nulla lacinia semper laoreet. Proin lobortis et tellus facilisis
+                finibus. Proin faucibus urna felis, at ullamcorper purus molestie sit amet. Suspendisse varius congue
+                hendrerit. Aenean vel egestas dui, quis tincidunt sem. Aliquam non ex auctor, dapibus lectus vel, porta
+                magna. Cras porttitor lacus ut velit egestas rhoncus. Nulla imperdiet sapien vel lacus aliquam feugiat.
+                Maecenas bibendum enim odio, vel laoreet lacus volutpat id. Etiam tempus dignissim facilisis. Phasellus
+                vel diam massa. Aliquam faucibus ultricies mauris, eu aliquam diam lacinia non. Quisque suscipit
+                porttitor dui, non tempus turpis.</p>
+
+            <form method="dialog">
+                <button class="button block colored">I accept the terms</button>
+            </form>
+        </div>
+    </dialog>
+
+    <main>
+        <div>
+            <p>Form</p>
+            <form class="form">
+                <label class="textfield">
+                    <span>text field</span>
+                    <input type="text" name="text" value="" placeholder="some value">
+                </label>
+
+                <select>
+                    <option disabled selected>Choose a Day</option>
+                    <option>Monday</option>
+                    <option>Sunday</option>
+                    <option>Saturday</option>
+                </select>
+            </form>
+        </div>
+
+        <div>
+            <p>Buttons</p>
+
+            <div class="buttons">
+                <button class="button block">I am a button</button>
+                <a href="#" class="button colored block">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path d="m12 16-5-5 1.4-1.45 2.6 2.6V4h2v8.15l2.6-2.6L17 11Zm-8 4v-5h2v3h12v-3h2v5Z" />
+                    </svg>
+                    <span>I am a button</span>
+                </a>
+            </div>
+
+            <div class="buttons">
+                <button class="button">I am a button</button>
+                <a href="#" class="button colored">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path d="m12 16-5-5 1.4-1.45 2.6 2.6V4h2v8.15l2.6-2.6L17 11Zm-8 4v-5h2v3h12v-3h2v5Z" />
+                    </svg>
+                    <span>I am a button</span>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <p>Bottom sheet</p>
+            <button class="button" onclick="openAppDialog()">open modal</button>
+            <button class="button" onclick="openBigAppDialog()">this one is bigger</button>
+        </div>
+
+        <div>
+            <p>Helpers</p>
+            <button class="button">any action</button>
+            <div class="helper">
+                <span>You can help people by describing associated feature of this button</span>
+                <button>ok</button>
+            </div>
+            <div style="height: 100px;"></div>
+        </div>
+
+        <div>
+            <p>Menus</p>
+            <small>possibly not working in iOS devices</small>
+
+            <div style="display: flex; gap: 22px;">
+                <div class="menu" id="menu">
+                    <button class="button openMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                            <path d="m12 15-5-5h10Z" />
+                        </svg>
+                        <span>show options</span>
+                    </button>
+                    <dialog>
+                        <ul>
+                            <div class="menu bottom right aside" id="menu3">
+                                <button class="openMenu">
+                                    <li style="display: flex; align-items: center; justify-content: space-between;">
+                                        <span>View</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                                            <path d="M9.4 18 8 16.6l4.6-4.6L8 7.4 9.4 6l6 6Z" />
+                                        </svg>
+                                    </li>
+                                </button>
+
+                                <dialog>
+                                    <ul>
+                                        <a href="#">
+                                            <li>
+                                                Action 1
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li>
+                                                Action 2
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li>
+                                                Action 3
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </dialog>
+                            </div>
+                            <a href="#">
+                                <li>Edit</li>
+                            </a>
+                            <a href="#">
+                                <li>Delete</li>
+                            </a>
+                        </ul>
+                    </dialog>
+                </div>
+
+                <div class="menu top left" id="menu2">
+                    <button class="button openMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                            <path
+                                d="m11.85 23-9.875-9.875 7.55-7.55 3.65 3.65.7-.7-5.35-5.35L1.7 10l.975.975L1.25 12.4l-2.35-2.35L8.575.375l3.1 3.1 3.1-3.1 9.85 9.85Zm.025-2.8 9.925-9.975-7.05-7.05-1.675 1.675 3.65 3.65-3.55 3.55-3.65-3.65L4.8 13.125l.725.725 3.725-3.725 1.4 1.4-3.725 3.725.7.7 3.725-3.725 1.425 1.425-3.725 3.725.7.7 3.725-3.725 1.4 1.4-3.725 3.725Zm-2.9-12.825Z" />
+                        </svg>
+                        <span>thanks message</span>
+                    </button>
+                    <dialog>
+                        <div class="content" style="display: flex; gap: 22px; max-width: 420px;">
+                            <img src="https://cdn.interessonne.fr/v1/format/png/https%3A%2F%2Fomsistuff.fr%2Fmedias%2Fdonate.png"
+                                alt="donate" style="height: 200px; width: auto;">
+                            <div>
+                                <h3>Thanks you for downloading this repaint !</h3>
+                                <p>Want to donate to creator ? take a look here</p>
+
+                                <button class="button block colored">donate</button>
+                            </div>
+                        </div>
+                    </dialog>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <p>Loaders</p>
+            <progress indeterminate></progress>
+            <p></p>
+            <progress max="100" value="0" id="determinate"></progress>
+            <p></p>
+            <span class="loader"></span>
+        </div>
+
+        <div>
+            <p>Lists</p>
+            <ul>
+                <li>First step</li>
+                <li>Second step</li>
+                <li>etc</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        const appDialog = new Dialog(document.getElementById('dialog'));
+        const bigAppDialog = new Dialog(document.getElementById('bigDialog'), { closable: false });
+
+        const menu = new Menu(document.getElementById('menu'));
+        const menu2 = new Menu(document.getElementById('menu2'));
+        const menu3 = new Menu(document.getElementById('menu3'));
+
+        function openAppDialog() {
+            appDialog.open();
+        }
+
+        function openBigAppDialog() {
+            bigAppDialog.open();
+        }
+
+        const determinate = document.getElementById('determinate');
+
+        setInterval(() => {
+            const value = determinate.value;
+            determinate.value = value >= 100 ? 0 : value + 10;
+        }, 1000);
+    </script>
+
+</body>
+
+</html>

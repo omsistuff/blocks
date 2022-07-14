@@ -1,0 +1,747 @@
+:root {
+    --primary: #1565c0;
+    --on-primary: #fff;
+    --body: #fafafa;
+    --on-body: #000;
+    --surface: #eee;
+    --on-surface: #000;
+    --dialog-border-radius: 6px;
+    --padding: 16px;
+    --navbar-height: 72px;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --padding: 42px;
+    }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --on-primary: #fff;
+        --body: #1D1D1D;
+        --on-body: #fff;
+        --surface: #333;
+        --on-surface: #fff;
+    }
+
+    * {
+        color-scheme: dark;
+    }
+}
+
+* {
+    outline-color: var(--primary);
+    outline-offset: 4px;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #000;
+}
+
+form {
+    margin: 0;
+}
+
+main {
+    min-height: 100%;
+    background-color: var(--body);
+    transition: transform 0.2s ease-out;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* utils classes */
+
+.autoflex {
+    display: flex;
+    gap: 16px;
+}
+
+.autoflex>* {
+    flex: 1;
+}
+
+.flex.col {
+    flex-direction: column;
+}
+
+@media (max-width: 900px) {
+    .autoflex {
+        flex-direction: column;
+    }
+}
+
+/* components */
+
+nav {
+    position: sticky;
+    top: 0;
+    padding-left: 32px;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--surface);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+nav a,
+nav span {
+    color: var(--on-surface);
+}
+
+nav span {
+    font-size: 22px;
+}
+
+nav .links {
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
+nav .links li {
+    padding: 0px 32px;
+}
+
+nav .links a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: var(--surface);
+}
+
+@media (max-width: 700px) {
+    :root {
+        --navbar-height: 56px;
+    }
+}
+
+.withDrawer {
+    display: flex;
+}
+
+.withDrawer>div {
+    padding: var(--padding);
+    min-height: calc(100vh - var(--navbar-height));
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+}
+
+.withDrawer aside {
+    background-color: var(--body);
+    border-right: 1px solid #8883;
+    min-width: 256px;
+    max-width: 256px;
+}
+
+@media (max-width: 900px) {
+    .withDrawer {
+        flex-direction: row-reverse;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .withDrawer>div {
+        min-width: 100%;
+        scroll-snap-align: start;
+    }
+
+    .withDrawer>aside {
+        scroll-snap-align: end;
+        background-color: var(--surface);
+    }
+}
+
+.linksRow summary {
+    display: flex;
+    align-items: center;
+    padding-left: 22px;
+    height: 42px;
+    font-weight: bold;
+    user-select: none;
+    cursor: pointer;
+}
+
+.linksRow .links {
+    display: flex;
+    flex-direction: column;
+}
+
+.linksRow a {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding-left: 22px;
+    text-decoration: none;
+    color: var(--on-body);
+}
+
+.linksRow details a {
+    padding-left: 46px;
+}
+
+.linksRow a:hover {
+    background-color: var(--surface);
+}
+
+details[open]>*:not(summary) {
+    animation: detailsShow .2s ease-in-out;
+}
+
+@keyframes detailsShow {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.textfield {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    height: 48px;
+    border-bottom: 2px solid #8884;
+    background-color: rgba(127, 127, 127, 0.05);
+    font-size: 16px;
+    color: #888;
+    white-space: nowrap;
+}
+
+.textfield span {
+    padding-left: 16px;
+}
+
+.textfield input {
+    padding: 12px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    transition: width 0.3s ease-in-out;
+}
+
+.textfield input::placeholder {
+    color: transparent;
+}
+
+.textfield:hover span {
+    padding-left: 0px;
+    width: 0%;
+    color: transparent;
+}
+
+.textfield:hover input::placeholder {
+    color: #898989;
+}
+
+select {
+    padding: 0 16px;
+    width: 100%;
+    height: 48px;
+    border: none;
+    background-color: rgba(127, 127, 127, 0.05);
+    font-size: 16px;
+    color: var(--on-body);
+    border-bottom: 2px solid #8884;
+}
+
+button {
+    padding: 4px 12px;
+    border: none;
+    background-color: transparent;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button {
+    padding: 0 32px;
+    height: 42px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.1s ease-in, box-shadow 0.1s ease-in;
+}
+
+.button svg {
+    fill: var(--on-surface);
+    height: 22px;
+    width: auto;
+}
+
+.button,
+.button span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.button.block {
+    width: 100%;
+}
+
+.button.colored {
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+.button.colored svg {
+    fill: var(--on-primary);
+}
+
+.button.flat {
+    background-color: transparent;
+    color: var(--on-surface);
+    box-shadow: none;
+}
+
+.button.flat:hover {
+    background-color: var(--surface);
+    color: var(--on-surface);
+}
+
+.button:hover {
+    filter: brightness(0.9);
+}
+
+.button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0);
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+}
+
+@keyframes bottomSheetEnter {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bottomSheetExit {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+@keyframes showBackdrop {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hideBackdrop {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.modal {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    top: unset;
+    bottom: 0;
+    max-height: calc(100% - 72px);
+    min-width: 100%;
+    border: none;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--body);
+    animation: bottomSheetExit 0.2s cubic-bezier(.46, .11, .56, .31) forwards;
+    z-index: 99;
+}
+
+.modal header {
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 22px;
+    border-bottom: 1px solid var(--surface);
+    background-color: var(--body);
+}
+
+.modal header span {
+    font-size: 22px;
+}
+
+.modal .content {
+    padding: 16px;
+}
+
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: hideBackdrop 0.s ease-in;
+}
+
+.modal[open] {
+    animation: bottomSheetEnter 0.3s cubic-bezier(.4, 0, 0, .97) forwards;
+}
+
+.modal[open]::backdrop {
+    animation: showBackdrop 0.3s cubic-bezier(.4, 0, 0, .97);
+}
+
+.modal[open]~main {
+    border-radius: var(--dialog-border-radius);
+    transform: scale(0.9);
+    transition: transform 0.3s ease-out;
+}
+
+.helper {
+    padding: 12px;
+    position: absolute;
+    max-width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+.helper::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--primary) transparent;
+}
+
+.helper button {
+    width: fit-content;
+    align-self: flex-end;
+    color: var(--on-primary);
+}
+
+.menu {
+    position: relative;
+    width: fit-content;
+}
+
+.menu dialog {
+    padding: 0;
+    margin: 0;
+    width: max-content;
+    z-index: 99;
+    border: none;
+    background-color: var(--surface);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform-origin: top left;
+}
+
+.menu.bottom.left dialog {
+    left: unset;
+    right: 0;
+    top: 100%;
+    transform-origin: top right;
+}
+
+.menu.top.right dialog {
+    top: unset;
+    bottom: 100%;
+    left: 0;
+    transform-origin: bottom left;
+}
+
+.menu.top.left dialog {
+    top: unset;
+    left: unset;
+    bottom: 100%;
+    right: 0;
+    transform-origin: bottom right;
+}
+
+.menu.left.aside dialog {
+    right: 100%;
+}
+
+.menu.right.aside dialog {
+    left: 100%;
+}
+
+.menu dialog[open] {
+    animation: showMenu .3s cubic-bezier(0, .62, .11, .82);
+}
+
+.menu .content {
+    padding: 16px;
+}
+
+.menu ul li {
+    min-width: 170px;
+}
+
+.menu ul a,
+.menu ul button {
+    padding: 0;
+    font-weight: inherit;
+    text-transform: inherit;
+    font-size: inherit;
+    background-color: var(--surface);
+}
+
+@keyframes showMenu {
+    0% {
+        transform: scaleX(0) scaleY(0);
+    }
+
+    30% {
+        transform: scaleX(.8) scaleY(.2);
+    }
+
+    100% {
+        transform: scaleX(1) scaleY(1);
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul a {
+    display: block;
+    text-decoration: none;
+    color: var(--on-surface);
+    background-color: inherit;
+}
+
+ul a:hover {
+    filter: brightness(.9);
+}
+
+ul li {
+    padding: 16px;
+    border-bottom: 1px solid var(--surface);
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+progress {
+    overflow: hidden;
+    accent-color: var(--primary);
+    position: relative;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: var(--surface);
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--primary);
+    transition: width .9s ease;
+}
+
+progress:indeterminate::before,
+progress:indeterminate::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary);
+}
+
+progress:indeterminate::before {
+    animation: progressLinearBefore 3s ease-in infinite;
+}
+
+progress:indeterminate::after {
+    animation: progressLinearAfter 3s ease-out infinite;
+}
+
+@keyframes progressLinearBefore {
+    0% {
+        transform: translateX(-75%) scaleX(.5);
+    }
+
+    50% {
+        transform: translateX(100%) scaleX(1);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes progressLinearAfter {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(-100%) scaleX(1);
+    }
+
+    95% {
+        transform: translateX(100%) scaleX(0);
+    }
+
+    100% {
+        transform: translateX(100%) scaleX(0);
+    }
+}
+
+.loader {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 4px solid var(--primary);
+    clip-path: polygon(50% 50%, 0% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+    animation: 1.6s to-loader linear infinite;
+    background: none !important;
+}
+
+.loader.small {
+    width: 24px;
+    height: 24px;
+    border-width: 3px;
+}
+
+.loader.large {
+    width: 56px;
+    height: 56px;
+    border-width: 5px;
+}
+
+.loader.white {
+    border-color: #ffffff !important;
+}
+
+@keyframes to-loader {
+    0% {
+        transform: rotate(0deg);
+        clip-path: polygon(50% 50%, 0% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+    }
+
+    20% {
+        clip-path: polygon(50% 50%, 0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 50%, 100% 50%, 100% 50%, 100% 50%);
+    }
+
+    30% {
+        clip-path: polygon(50% 50%, 0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 50% 100%, 50% 100%);
+    }
+
+    40% {
+        clip-path: polygon(50% 50%, 0% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%);
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 50% 0%, 50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%);
+    }
+
+    60% {
+        clip-path: polygon(50% 50%, 100% 50%, 100% 50%, 100% 50%, 100% 50%, 100% 100%, 50% 100%, 0% 100%, 0% 50%);
+    }
+
+    70% {
+        clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%, 0% 50%);
+    }
+
+    80% {
+        clip-path: polygon(50% 50%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 50%);
+    }
+
+    90% {
+        transform: rotate(360deg);
+        clip-path: polygon(50% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+    }
+}
+
+@keyframes panelEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(-3%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes panelExit {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(3%);
+    }
+}
+
+@media (min-width: 768px) {
+
+    dialog header,
+    dialog .content {
+        padding: 16px 72px;
+    }
+}

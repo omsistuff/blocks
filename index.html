@@ -1,0 +1,93 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blocks - A lightweight CSS framework built with nested components</title>
+
+    <link rel="stylesheet" href="/src/app.css">
+    <script src="/src/app.js"></script>
+
+    <link href="http://fonts.cdnfonts.com/css/poe-vetica-new" rel="stylesheet">
+    <!-- <link href="http://fonts.cdnfonts.com/css/helvetica-255" rel="stylesheet"> -->
+    <style>
+        * {
+            font-family: 'Poe Vetica New', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <nav>
+            <span>Blocks</span>
+            <ul class="links">
+                <a href="https://github.com/omsistuff/blocks">
+                    <li>Project on Github</li>
+                </a>
+            </ul>
+        </nav>
+
+        <div class="withDrawer">
+            <aside class="linksRow">
+                <a href="#introduction">Introduction</a>
+                <details>
+                    <summary>Components</summary>
+                    <div class="links">
+                        <a href="#buttons">Buttons</a>
+                        <a href="#dialogs">Dialogs</a>
+                        <a href="#menus">Menus</a>
+                        <a href="#navbars">Navbars</a>
+                        <a href="#textfields">Textfields</a>
+                    </div>
+                </details>
+                <details>
+                    <summary>Customization</summary>
+                    <div class="links">
+                        <a href="">Borders</a>
+                        <a href="">Color</a>
+                        <a href="">Dark Mode</a>
+                        <a href="">Typography</a>
+                    </div>
+                </details>
+            </aside>
+
+            <div class="view">
+                <div style="display:grid;place-items:center;height:100%;"><span class="loader"></span></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const view = document.querySelector('.view');
+
+        async function loadPage(page) {
+            view.style.animation = 'panelExit .2s cubic-bezier(.14,1.09,.33,.88)';
+            // view.innerHTML = `<div style="display:grid;place-items:center;height:100%;"><span class="loader"></span></div>`;
+            const response = await fetch(`/pages/${page}.html`);
+            const html = await response.text();
+            view.innerHTML = html;
+            view.style.animation = 'panelEnter .3s cubic-bezier(.14,1.09,.33,.88)';
+            return true;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                await loadPage(hash);
+            } else {
+                await loadPage('introduction');
+            }
+        });
+
+        window.addEventListener('hashchange', async () => {
+            const hash = window.location.hash.substring(1);
+            await loadPage(hash);
+        });
+    </script>
+
+</body>
+
+</html>
