@@ -70,6 +70,10 @@ img {
     flex: 1;
 }
 
+.center {
+    align-items: center;
+}
+
 .flex.col {
     flex-direction: column;
 }
@@ -85,9 +89,10 @@ img {
 nav {
     position: sticky;
     top: 0;
-    padding-left: 32px;
+    padding-left: 22px;
     height: var(--navbar-height);
     display: flex;
+    gap: 32px;
     align-items: center;
     justify-content: space-between;
     background-color: var(--surface);
@@ -98,16 +103,22 @@ nav {
 nav a,
 nav span {
     color: var(--on-surface);
+    white-space: nowrap;
 }
 
 nav span {
     font-size: 22px;
 }
 
+nav button {
+    padding: 0;
+}
+
 nav .links {
     align-items: center;
     display: flex;
     height: 100%;
+    overflow-x: auto;
 }
 
 nav .links li {
@@ -121,7 +132,19 @@ nav .links a {
     background-color: var(--surface);
 }
 
+nav svg {
+    fill: #888;
+}
+
 @media (max-width: 700px) {
+    nav {
+        padding-left: 16px;
+    }
+
+    nav .links li {
+        padding: 0px 12px;
+    }
+
     :root {
         --navbar-height: 56px;
     }
@@ -161,6 +184,12 @@ nav .links a {
     .withDrawer>aside {
         scroll-snap-align: end;
         background-color: var(--surface);
+    }
+}
+
+@media (min-width: 901px) {
+    .drawerTrigger {
+        display: none;
     }
 }
 
