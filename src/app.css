@@ -1,5 +1,5 @@
 :root {
-    --primary: #1565c0;
+    --primary: #22A569;
     --on-primary: #fff;
     --body: #fafafa;
     --on-body: #000;
@@ -301,6 +301,7 @@ button {
 }
 
 .button {
+    position: relative;
     padding: 0 32px;
     height: 42px;
     width: fit-content;
@@ -319,6 +320,35 @@ button {
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.1s ease-in, box-shadow 0.1s ease-in;
+    overflow: hidden;
+}
+
+.button.shiny::before,
+.button.shiny::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 100%;
+    transform: skewX(-22deg);
+    background-color: #fff2;
+    animation: shiny 3s cubic-bezier(.92, .32, .58, .84) infinite;
+}
+
+.button.shiny::after {
+    background-color: #fff1;
+    width: 42px;
+}
+
+@keyframes shiny {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 110%;
+    }
 }
 
 .button svg {
