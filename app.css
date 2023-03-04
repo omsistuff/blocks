@@ -443,61 +443,6 @@ button {
     }
 }
 
-.modal {
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    left: 0;
-    top: unset;
-    bottom: 0;
-    max-height: calc(100% - 72px);
-    min-width: 100%;
-    border: none;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-    background-color: var(--body);
-    animation: bottomSheetExit 0.2s cubic-bezier(.46, .11, .56, .31) forwards;
-    z-index: 99;
-}
-
-.modal header {
-    padding: 16px;
-    position: sticky;
-    top: 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 22px;
-    border-bottom: 1px solid var(--surface);
-    background-color: var(--body);
-}
-
-.modal header span {
-    font-size: 22px;
-}
-
-.modal .content {
-    padding: 16px;
-}
-
-.modal::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-    animation: hideBackdrop 0.s ease-in;
-}
-
-.modal[open] {
-    animation: bottomSheetEnter 0.3s cubic-bezier(.4, 0, 0, .97) forwards;
-}
-
-.modal[open]::backdrop {
-    animation: showBackdrop 0.3s cubic-bezier(.4, 0, 0, .97);
-}
-
-.modal[open]~main {
-    border-radius: var(--dialog-border-radius);
-    transform: scale(0.9);
-    transition: transform 0.3s ease-out;
-}
-
 .helper {
     padding: 12px;
     position: absolute;
@@ -703,7 +648,28 @@ progress:indeterminate::after {
     }
 }
 
-.loader {
+[aria-busy=true] {
+    position: relative;
+    user-select: none;
+    pointer-events: none;
+}
+
+[aria-busy=true]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fffe;
+    opacity: .5;
+}
+
+[aria-busy=true]::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -713,22 +679,6 @@ progress:indeterminate::after {
     clip-path: polygon(50% 50%, 0% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
     animation: 1.6s to-loader linear infinite;
     background: none !important;
-}
-
-.loader.small {
-    width: 24px;
-    height: 24px;
-    border-width: 3px;
-}
-
-.loader.large {
-    width: 56px;
-    height: 56px;
-    border-width: 5px;
-}
-
-.loader.white {
-    border-color: #ffffff !important;
 }
 
 @keyframes to-loader {
@@ -775,34 +725,143 @@ progress:indeterminate::after {
     }
 }
 
-@keyframes panelEnter {
-    0% {
-        opacity: 0;
-        transform: translateY(-3%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes panelExit {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(3%);
-    }
-}
-
 @media (min-width: 768px) {
+
+    @keyframes panelEnter {
+        0% {
+            opacity: 0;
+            transform: translateY(-3%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes panelExit {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(3%);
+        }
+    }
 
     .modal header,
     .modal .content {
         padding: 16px 72px;
+    }
+}
+
+@keyframes modalEnter {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes modalExit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    10% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+.modal {
+    padding: 0;
+    position: fixed;
+    max-height: calc(100% - 72px);
+    min-width: 320px;
+    max-width: 600px;
+    border: none;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--body);
+    z-index: 99;
+    border-radius: 3px;
+    animation: modalExit 0.2s cubic-bezier(.46, .11, .56, .31) forwards;
+}
+
+.modal[open] {
+    animation: modalEnter 0.3s cubic-bezier(.4, 0, 0, .97) forwards;
+}
+
+.modal::backdrop {
+    background-color: #fffd;
+    animation: hideBackdrop 0.s ease-in;
+}
+
+.modal header {
+    padding: 16px var(--padding);
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 22px;
+    border-bottom: 1px solid var(--surface);
+    background-color: var(--body);
+}
+
+.modal header span {
+    font-size: 22px;
+}
+
+.modal .content {
+    padding: var(--padding);
+}
+
+@media (max-width: 900px) {
+    .modal {
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        left: 0;
+        top: unset;
+        bottom: 0;
+        max-height: calc(100% - 72px);
+        min-width: 100%;
+        border: none;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        background-color: var(--body);
+        animation: bottomSheetExit 0.2s cubic-bezier(.46, .11, .56, .31) forwards;
+        z-index: 99;
+    }
+
+    .modal::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: hideBackdrop 0.s ease-in;
+    }
+
+    .modal[open] {
+        animation: bottomSheetEnter 0.3s cubic-bezier(.4, 0, 0, .97) forwards;
+    }
+
+    .modal[open]::backdrop {
+        animation: showBackdrop 0.3s cubic-bezier(.4, 0, 0, .97);
+    }
+
+    .modal[open]~main {
+        border-radius: var(--dialog-border-radius);
+        transform: scale(0.9);
+        transition: transform 0.3s ease-out;
     }
 }
