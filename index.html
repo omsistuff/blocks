@@ -33,14 +33,14 @@
 <body>
 
     <dialog class="modal" id="dialog">
-        <div class="content">
+        <div class="content" aria-busy="true">
             <img src="https://cdn.interessonne.fr/v1/format/png/https%3A%2F%2Fomsistuff.fr%2Fmedias%2Fdonate.png"
                 alt="donate" style="height: 200px; width: auto;">
             <div>
                 <h3>Thanks you for downloading this repaint !</h3>
                 <p>Want to donate to creator ? take a look here</p>
 
-                <form action="" method="dialog"><button class="button block colored">donate</button></form>
+                <button class="button block colored">donate</button>
             </div>
         </div>
     </dialog>
@@ -82,18 +82,26 @@
     <main>
         <div>
             <p>Form</p>
-            <form class="form" aria-busy="true">
-                <label class="textfield">
-                    <span>text field</span>
-                    <input type="text" name="text" value="" placeholder="some value">
+            <form class="form" aria-busy="false">
+                <label>
+                    <span>Nom Prénom</span>
+                    <input type="text" name="text" value="">
                 </label>
 
-                <select>
-                    <option disabled selected>Choose a Day</option>
-                    <option>Monday</option>
-                    <option>Sunday</option>
-                    <option>Saturday</option>
-                </select>
+                <label>
+                    <span>Adresse email</span>
+                    <input type="email" name="email" value="" placeholder="email@example.com">
+                </label>
+
+                <label for="">
+                    <span>Jours de la semaine</span>
+                    <select>
+                        <option disabled selected>Choose a Day</option>
+                        <option>Monday</option>
+                        <option>Sunday</option>
+                        <option>Saturday</option>
+                    </select>
+                </label>
             </form>
         </div>
 

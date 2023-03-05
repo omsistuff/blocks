@@ -72,6 +72,19 @@ class Menu {
     }
 }
 
+const Haptic = {
+    error: function () {
+        try {
+            navigator.vibrate([16, 80, 16, 80, 30, 80, 16]);
+        } catch (e) { }
+    },
+    success: function () {
+        try {
+            navigator.vibrate([30, 90, 20]);
+        } catch (e) { }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const drawerContainer = document.querySelector('.withDrawer');
 

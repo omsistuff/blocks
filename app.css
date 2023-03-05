@@ -239,45 +239,27 @@ details[open]>*:not(summary) {
     }
 }
 
-.textfield {
+label {
     display: flex;
-    align-items: center;
-    gap: 6px;
-    width: 100%;
-    height: 48px;
-    border-bottom: 2px solid #8884;
-    background-color: rgba(127, 127, 127, 0.05);
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
     font-size: 16px;
     color: #888;
-    white-space: nowrap;
 }
 
-.textfield span {
-    padding-left: 16px;
+label span {
+    color: #323232;
 }
 
-.textfield input {
+label input {
     padding: 12px;
-    width: 100%;
-    height: 100%;
     border: none;
     background-color: transparent;
     font-size: 16px;
-    transition: width 0.3s ease-in-out;
-}
-
-.textfield input::placeholder {
-    color: transparent;
-}
-
-.textfield:hover span {
-    padding-left: 0px;
-    width: 0%;
-    color: transparent;
-}
-
-.textfield:hover input::placeholder {
-    color: #898989;
+    width: 100%;
+    border-bottom: 2px solid #8884;
+    background-color: rgba(127, 127, 127, 0.05);
 }
 
 select {
@@ -679,6 +661,10 @@ progress:indeterminate::after {
     clip-path: polygon(50% 50%, 0% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
     animation: 1.6s to-loader linear infinite;
     background: none !important;
+}
+
+.completed::after {
+    content: "";
 }
 
 @keyframes to-loader {
