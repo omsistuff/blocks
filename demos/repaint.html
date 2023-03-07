@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaint</title>
+
+    <link rel="stylesheet" href="../app.css">
+    <script src="../app.js"></script>
+    <link href="http://fonts.cdnfonts.com/css/renner" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
+
+    <style>
+        * {
+            font-family: 'Renner*', sans-serif;
+        }
+
+        main>section {
+            height: 100%;
+        }
+
+        img {
+            display: block;
+        }
+
+        .imageContainer {
+            display: grid;
+            place-items: center;
+            background-color: black;
+        }
+
+        .imageSized {
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: grid;
+            place-items: center;
+            border: 1px solid #FFD17D;
+            border-radius: 1px;
+            transition-property: top, left, bottom, right;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-in-out;
+        }
+
+        main {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 480px;
+        }
+
+        @media (max-width: 1000px) {
+            main {
+                height: unset;
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="imageContainer">
+            <div class="imageSized">
+                <aside class="overlay"></aside>
+                <img id="image" src="../static/images/STIF Régionale (GPM) - Keolis Iveco Urbanway 18 3P.jpg" alt="">
+            </div>
+        </section>
+        <section></section>
+    </main>
+
+    <script>
+        const img = document.getElementById('image');
+
+        // Load the model.
+        cocoSsd.load().then(model => {
+            // detect objects in the image.
+            model.detect(img).then(predictions => {
+                const bbox = predictions.filter(x => x.class == 'bus').sort((a, b) => b.score - a.score)[0].bbox;
+                const overlay = document.querySelector('.overlay');
+                overlay.style.left = `${bbox[0]}px`;
+                overlay.style.top = `${bbox[1]}px`;
+                overlay.style.right = `${img.width - bbox[2] - bbox[0]}px`;
+                overlay.style.bottom = `${img.height - bbox[3] - bbox[1]}px`;
+            });
+        });
+    </script>
+</body>
+
+</html>
