@@ -53,7 +53,7 @@
         }
 
         main {
-            height: 100vh;
+            height: calc(100vh - var(--navbar-height));
             display: grid;
             grid-template-columns: 1fr 480px;
         }
@@ -69,6 +69,47 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <a aria-label="accueil" href="">
+                <img src="https://static.omsistuff.fr/brand/logos/omsistuff.fr.white.png" alt="Omsistuff logo">
+            </a>
+            <form role="searchbox">
+                <input type="search" placeholder="IDFM V2/V3 - GPM (Transdev) Iveco Urbanway 18 GNV 4P">
+                <button title="Rechercher">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M23.9417 25.5L14.6271 16.1854C13.9187 16.7993 13.0928 17.2774 12.1494 17.6198C11.2059 17.9622 10.2019 18.1333 9.1375 18.1333C6.58367 18.1333 4.4223 17.2479 2.65338 15.4771C0.884461 13.7063 0 11.5694 0 9.06667C0 6.56389 0.885417 4.42708 2.65625 2.65625C4.42708 0.885417 6.56979 0 9.08438 0C11.599 0 13.7358 0.885417 15.4948 2.65625C17.2538 4.42708 18.1333 6.56566 18.1333 9.07198C18.1333 10.0837 17.9681 11.0618 17.6375 12.0063C17.3069 12.9507 16.8111 13.8361 16.15 14.6625L25.5 23.9417L23.9417 25.5ZM9.10208 16.0083C11.0205 16.0083 12.6511 15.3295 13.994 13.9719C15.3369 12.6142 16.0083 10.9792 16.0083 9.06667C16.0083 7.15417 15.3369 5.5191 13.994 4.16146C12.6511 2.80382 11.0205 2.125 9.10208 2.125C7.16401 2.125 5.51664 2.80382 4.15997 4.16146C2.80332 5.5191 2.125 7.15417 2.125 9.06667C2.125 10.9792 2.80332 12.6142 4.15997 13.9719C5.51664 15.3295 7.16401 16.0083 9.10208 16.0083Z"
+                            fill="white" />
+                    </svg>
+                </button>
+                <ul>
+                    <li>
+                        <a href="">TEST</a>
+                    </li>
+                    <li><a href="">iveco Evadys Line, Bluebus 12, Man Lion's City A20, A21 CNG, A37 électrique et
+                            Hybride, Heuliez 427</a></li>
+                    <li><a href="">BHNS</a></li>
+                    <li><a href="">iveco Crossway Pro</a></li>
+                    <li><a href="">iveco Crossway</a></li>
+                    <li><a href="">iveco Citelis 12 & Citelis 18 (Saint-Servan)</a></li>
+                    <li><a href="">iveco Citelis 18 (Saint-Servan)</a></li>
+                    <li><a href="">iveco Crossway LE City</a></li>
+                </ul>
+            </form>
+            <div aria-hidden="true" class="spacer"></div>
+            <a class="button" href="">Connexion</a>
+            <a href="" class="button colored shiny">Commander un repaint</a>
+            <button title="Ouvrir le menu" class="icon">
+                <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.70312 22.5V20.625H27.2031V22.5H4.70312ZM4.70312 15.9375V14.0625H27.2031V15.9375H4.70312ZM4.70312 9.375V7.5H27.2031V9.375H4.70312Z"
+                        fill="white" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
     <main>
         <section class="imageContainer">
             <div class="imageSized">
@@ -80,20 +121,20 @@
     </main>
 
     <script>
-        const img = document.getElementById('image');
+        // const img = document.getElementById('image');
 
-        // Load the model.
-        cocoSsd.load().then(model => {
-            // detect objects in the image.
-            model.detect(img).then(predictions => {
-                const bbox = predictions.filter(x => x.class == 'bus').sort((a, b) => b.score - a.score)[0].bbox;
-                const overlay = document.querySelector('.overlay');
-                overlay.style.left = `${bbox[0]}px`;
-                overlay.style.top = `${bbox[1]}px`;
-                overlay.style.right = `${img.width - bbox[2] - bbox[0]}px`;
-                overlay.style.bottom = `${img.height - bbox[3] - bbox[1]}px`;
-            });
-        });
+        // // Load the model.
+        // cocoSsd.load().then(model => {
+        //     // detect objects in the image.
+        //     model.detect(img).then(predictions => {
+        //         const bbox = predictions.filter(x => x.class == 'bus').sort((a, b) => b.score - a.score)[0].bbox;
+        //         const overlay = document.querySelector('.overlay');
+        //         overlay.style.left = `${bbox[0]}px`;
+        //         overlay.style.top = `${bbox[1]}px`;
+        //         overlay.style.right = `${img.width - bbox[2] - bbox[0]}px`;
+        //         overlay.style.bottom = `${img.height - bbox[3] - bbox[1]}px`;
+        //     });
+        // });
     </script>
 </body>
 
