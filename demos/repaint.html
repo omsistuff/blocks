@@ -9,14 +9,14 @@
 
     <link rel="stylesheet" href="../app.css">
     <script src="../app.js"></script>
-    <link href="http://fonts.cdnfonts.com/css/renner" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" media="print" onload="this.media='all'"
+        href="https://fonts.googleapis.com/css?family=Jost:400,500,600|Material+Icons+Sharp" crossorigin>
 
     <style>
         * {
-            font-family: 'Renner*', sans-serif;
+            font-family: 'Jost', sans-serif;
         }
 
         main>section {
@@ -37,25 +37,19 @@
             position: relative;
         }
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: grid;
-            place-items: center;
-            border: 1px solid #FFD17D;
-            border-radius: 1px;
-            transition-property: top, left, bottom, right;
-            transition-duration: 0.5s;
-            transition-timing-function: ease-in-out;
+        section+section {
+            border-left: 1px solid var(--on-body-verylight);
         }
 
         main {
             height: calc(100vh - var(--navbar-height));
             display: grid;
-            grid-template-columns: 1fr 480px;
+            grid-template-columns: 1fr 490px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--primary-dark-third)
         }
 
         @media (max-width: 1000px) {
@@ -83,41 +77,135 @@
                             fill="white" />
                     </svg>
                 </button>
-                <ul>
-                    <li>
-                        <a href="">TEST</a>
-                    </li>
-                    <li><a href="">iveco Evadys Line, Bluebus 12, Man Lion's City A20, A21 CNG, A37 électrique et
-                            Hybride, Heuliez 427</a></li>
-                    <li><a href="">BHNS</a></li>
-                    <li><a href="">iveco Crossway Pro</a></li>
-                    <li><a href="">iveco Crossway</a></li>
-                    <li><a href="">iveco Citelis 12 & Citelis 18 (Saint-Servan)</a></li>
-                    <li><a href="">iveco Citelis 18 (Saint-Servan)</a></li>
-                    <li><a href="">iveco Crossway LE City</a></li>
-                </ul>
+                <aside>
+                    <ul>
+                        <li>
+                            <a href="">TEST</a>
+                        </li>
+                        <li><a href="">iveco Evadys Line, Bluebus 12, Man Lion's City A20, A21 CNG, A37 électrique et
+                                Hybride, Heuliez 427</a></li>
+                        <li><a href="">BHNS</a></li>
+                        <li><a href="">iveco Crossway Pro</a></li>
+                        <li><a href="">iveco Crossway</a></li>
+                        <li><a href="">iveco Citelis 12 & Citelis 18 (Saint-Servan)</a></li>
+                        <li><a href="">iveco Citelis 18 (Saint-Servan)</a></li>
+                        <li><a href="">iveco Crossway LE City</a></li>
+                    </ul>
+                    <a href="">
+                        <img src="https://attente-resto-u.arno.cl/map.jpg" alt="">
+                        <span>Chercher sur la carte</span>
+                    </a>
+                </aside>
             </form>
             <div aria-hidden="true" class="spacer"></div>
             <a class="button" href="">Connexion</a>
             <a href="" class="button colored shiny">Commander un repaint</a>
-            <button title="Ouvrir le menu" class="icon">
-                <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M4.70312 22.5V20.625H27.2031V22.5H4.70312ZM4.70312 15.9375V14.0625H27.2031V15.9375H4.70312ZM4.70312 9.375V7.5H27.2031V9.375H4.70312Z"
-                        fill="white" />
-                </svg>
-            </button>
+            <div class="menu bottom left" id="navbarmenu">
+                <button title="Ouvrir le menu" class="icon openMenu">
+                    <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4.70312 22.5V20.625H27.2031V22.5H4.70312ZM4.70312 15.9375V14.0625H27.2031V15.9375H4.70312ZM4.70312 9.375V7.5H27.2031V9.375H4.70312Z"
+                            fill="white" />
+                    </svg>
+                </button>
+                <dialog>
+                    <ul>
+                        <a href="#">
+                            <li>
+                                <i class="material-icons-sharp">publish</i>
+                                <span>Publier</span>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>
+                                <i class="material-icons-sharp">settings</i>
+                                <span>Paramètres</span>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>
+                                <i class="material-icons-sharp">forum</i>
+                                <span>Discuter sur Discord</span>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>
+                                <i class="material-icons-sharp">thumb_up</i>
+                                <span>Repaints favoris</span>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>
+                                <i class="material-icons-sharp">feedback</i>
+                                <span>Envoyer des commentaires</span>
+                            </li>
+                        </a>
+                    </ul>
+                    <div class="links">
+                        <a href="/assets/terms#cgu">Conditions d'utilisation</a>
+                        <a href="/assets/terms#privacy">Règles de confidentialité</a>
+                        <a href="#consent">Gestion des cookies</a>
+                        <a href="/cdn-cgi/l/email-protection#73101c1d07121007331c1e001a00070615155d1501">Nous
+                            contacter</a>
+                        <span>&copy; 2019-2023 Omsistuff. Tous droits réservés.</span>
+                    </div>
+                </dialog>
+            </div>
         </nav>
     </header>
 
     <main>
         <section class="imageContainer">
             <div class="imageSized">
-                <aside class="overlay"></aside>
                 <img id="image" src="../static/images/STIF Régionale (GPM) - Keolis Iveco Urbanway 18 3P.jpg" alt="">
             </div>
         </section>
-        <section></section>
+        <section>
+            <div style="padding: 16px;">
+                <small>Posté il y a 5h</small>
+                <h1>STIF Régionale (GPM) - Keolis</h1>
+                <p>S'il n'existe pas, n'oubliez pas de créer un dossier nommé 18M_3P_GO dans le dossier
+                    "IvecoBus_citybus_family\Texture\repaint\" si vous voulez que ce repaint puisse être sélectionné en
+                    jeu.
+                    <br><br>
+                    repaint basé sur un Urbanway 18 de Transdev STRAV.
+                </p>
+                <a href="#" class="button block big colored">Télécharger</a>
+            </div>
+
+            <h2 style="padding-left: 16px;">Livrée similaire pour d'autres bus</h2>
+            <nav class="scroll">
+                <div style="margin-left: 16px;" class="card small" aria-current="true">
+                    <img src="https://omsistuff.fr/static/img/bus/IVECO%20URBANWAY%2012%20Tector%207.5dbf9d9215e22862be87b4d3d712005241cd1859.jpg"
+                        alt="">
+                    <div class="inner">
+                        <p>Iveco Urbanway</p>
+                        <span>18m</span>
+                        <span>3p</span>
+                    </div>
+                </div>
+                <div class="card small">
+                    <img src="https://i.omsistuff.fr/60a9092b2e06al.jpg" alt="">
+                    <div class="inner">
+                        <p>MB_O530 Facelift version 12/18M</p>
+                    </div>
+                </div>
+                <div style="margin-right: 16px;" class="card small">
+                    <img src="https://i.omsistuff.fr/MtQ03POAPJIrJoDl.jpg" alt="">
+                    <div class="inner">
+                        <p>Iveco Crossway le</p>
+                        <span>13m</span>
+                        <span>2p</span>
+                    </div>
+                </div>
+            </nav>
+
+            <small style="padding: 16px;">Ne modifiez, redistribuez, vendez ou n'utilisez pas ce repaint ou des éléments
+                de celui-ci sans avoir
+                l'accord explicite de son auteur, à moins que la licence vous y autorise. Le texte de cette page est
+                distribué sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC BY SA
+                    4.0</a></small>
+        </section>
     </main>
 
     <script>
@@ -135,6 +223,8 @@
         //         overlay.style.bottom = `${img.height - bbox[3] - bbox[1]}px`;
         //     });
         // });
+
+        new Menu(document.getElementById('navbarmenu'));
     </script>
 </body>
 

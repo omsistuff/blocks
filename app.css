@@ -1,12 +1,16 @@
 :root {
     --primary: #22A569;
+    --primary-light: #ebf3f0;
     --primary-dark-first: #131313;
     --primary-dark-second: #072115;
     --primary-dark-third: #0E422A;
     --on-primary: #fff;
     --body: #fafafa;
     --on-body: #000;
+    --on-body-light: #343434;
+    --on-body-verylight: #787878;
     --surface: #eee;
+    --border-color: #ddd;
     --on-surface: #000;
     --dialog-border-radius: 6px;
     --padding: 16px;
@@ -43,6 +47,24 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+small+h1 {
+    margin-top: 2px;
+}
+
+small {
+    display: inline-block;
+    line-height: 16px;
+    color: var(--on-body-verylight)
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
 }
 
 form {
@@ -147,28 +169,40 @@ header:focus-within:before {
     border-bottom-right-radius: 4px;
 }
 
-[role=searchbox] ul {
+[role=searchbox] aside {
+    --side-search-width: 230px;
     display: none;
     background-color: white;
     position: absolute;
     top: 100%;
     left: 0;
-    right: 48px;
+    right: calc(48px - var(--side-search-width));
     height: auto;
+    border-radius: 4px;
+    border-top-left-radius: 0px;
+    overflow: hidden;
+}
+
+[role=searchbox] ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    overflow: hidden;
+    max-width: calc(100% - var(--side-search-width));
+}
+
+[role=searchbox] aside>a {
+    max-width: 100%;
+    margin: 8px;
+    text-decoration: none;
+    color: var(--on-surface)
 }
 
 [role=searchbox]:focus-within input {
     border-bottom-left-radius: 0px;
 }
 
-[role=searchbox]:focus-within ul {
-    display: block;
+[role=searchbox]:focus-within aside {
+    display: flex;
 }
 
 [role=searchbox] ul li {
@@ -189,7 +223,110 @@ header:focus-within:before {
 }
 
 [role=searchbox] ul li a:hover {
-    background-color: #eee;
+    background-color: var(--surface);
+}
+
+[role=searchbox] ul li a:focus-visible {
+    outline-offset: -1px;
+    outline: 1px dotted var(--on-surface);
+    background-color: var(--surface);
+}
+
+input:focus {
+    outline-offset: -1px;
+    outline: 1px dotted var(--on-body);
+}
+
+.openMenu:focus {
+    outline: auto;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 0 16px;
+}
+
+.menu ul a {
+    display: block;
+    text-decoration: none;
+    color: var(--on-surface);
+}
+
+.menu ul a:hover {
+    background-color: var(--body);
+}
+
+.menu ul a:focus-visible {
+    outline-offset: -1px;
+    outline: 1px dotted var(--on-surface);
+    background-color: var(--body);
+}
+
+.menu .links {
+    padding: 0 16px;
+    max-width: 320px;
+    display: flex;
+    gap: 2px 8px;
+    flex-flow: row wrap;
+    font-size: 14px;
+    color: var(--on-body-verylight)
+}
+
+.menu .links a {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    color: unset;
+}
+
+.card {
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card.small {
+    min-width: 220px;
+    max-width: 220px;
+}
+
+.card.small img {
+    height: 120px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card .inner {
+    padding: 4px 12px;
+}
+
+.card p {
+    font-size: 18px;
+    margin: 0;
+}
+
+.card span {
+    font-size: 14px;
+    color: var(--on-body-verylight)
+}
+
+.card[aria-current=true] {
+    border-color: var(--primary);
+    background-color: var(--primary-light);
+}
+
+nav.scroll {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
 }
 
 label {
@@ -304,6 +441,11 @@ button {
     width: 100%;
 }
 
+.button.big {
+    height: 52px;
+    font-size: 16px;
+}
+
 .button.colored {
     background-color: var(--primary);
     color: var(--on-primary);
@@ -412,7 +554,7 @@ button {
 }
 
 .menu dialog {
-    padding: 0;
+    padding: 12px 0;
     margin: 0;
     width: max-content;
     z-index: 99;
@@ -442,6 +584,7 @@ button {
     bottom: 100%;
     right: 0;
     transform-origin: bottom right;
+    overflow: hidden;
 }
 
 .menu.left.aside dialog {
@@ -453,7 +596,7 @@ button {
 }
 
 .menu dialog[open] {
-    animation: showMenu .3s cubic-bezier(0, .62, .11, .82);
+    animation: showMenu .3s cubic-bezier(.25, -0.27, .08, .59);
 }
 
 .menu .content {
@@ -479,7 +622,7 @@ button {
     }
 
     30% {
-        transform: scaleX(.8) scaleY(.2);
+        transform: scaleX(1.05) scaleY(1);
     }
 
     100% {
