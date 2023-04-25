@@ -127,14 +127,6 @@ header [aria-label=accueil] {
     padding-right: 48px;
 }
 
-header:focus-within:before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
 [role=searchbox] {
     position: relative;
     height: 50px;
@@ -181,6 +173,14 @@ header:focus-within:before {
     border-radius: 4px;
     border-top-left-radius: 0px;
     overflow: hidden;
+}
+
+[role=searchbox] aside::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 [role=searchbox] ul {
@@ -235,10 +235,6 @@ header:focus-within:before {
 input:focus {
     outline-offset: -1px;
     outline: 1px dotted var(--on-body);
-}
-
-.openMenu:focus {
-    outline: auto;
 }
 
 .menu ul {
@@ -564,6 +560,14 @@ button {
     transform-origin: top left;
 }
 
+.menu .js-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--primary-dark-first);
+    opacity: .5;
+    cursor: text;
+}
+
 .menu.bottom.left dialog {
     left: unset;
     right: 0;
@@ -597,6 +601,12 @@ button {
 
 .menu dialog[open] {
     animation: showMenu .3s cubic-bezier(.25, -0.27, .08, .59);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu dialog[open] {
+        animation: none;
+    }
 }
 
 .menu .content {

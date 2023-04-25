@@ -45,6 +45,7 @@ class Menu {
                 if (this.isOpen) return;
 
                 this.dialog.show();
+                this.dialog.insertAdjacentHTML('afterend', '<aside aria-hidden="true" class="js-backdrop"></aside>');
 
                 setTimeout(() => {
                     this.isOpen = true;
@@ -52,8 +53,13 @@ class Menu {
             });
         });
 
+        function removeBackdrop() {
+            document.querySelector('.js-backdrop').remove();
+        }
+
         this.dialog.addEventListener('close', () => {
             this.isOpen = false;
+            removeBackdrop();
         });
 
         document.addEventListener('click', (e) => {
@@ -61,12 +67,14 @@ class Menu {
 
             if (!inside && this.isOpen) {
                 this.dialog.close();
+                removeBackdrop();
             }
         });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.dialog.close();
+                removeBackdrop();
             }
         });
     }
@@ -84,23 +92,3 @@ const Haptic = {
         } catch (e) { }
     }
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-    const drawerContainer = document.querySelector('.withDrawer');
-
-    if (drawerContainer) {
-        document.querySelectorAll('.drawerTrigger').forEach((trigger) => {
-            trigger.addEventListener('click', () => {
-                document.querySelector('.withDrawer>aside').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                });
-            });
-        });
-
-        document.querySelector('.withDrawer>div').scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        });
-    };
-});
